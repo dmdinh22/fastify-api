@@ -2,6 +2,13 @@
 const fastify = require('fastify')({
     logger: true
 });
+const mongoose = require('mongoose');
+
+// connect to db
+mongoose
+    .connect('mongodb://localhost/mycargarage')
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
 
 // create route
 fastify.get('/', async (request, reply) => {
