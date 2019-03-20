@@ -3,6 +3,7 @@ const fastify = require('fastify')({
     logger: true
 });
 const mongoose = require('mongoose');
+const routes = require('./routes');
 
 // connect to db
 mongoose
@@ -28,3 +29,7 @@ const start = async () => {
     }
 };
 start();
+
+routes.forEach((route, index) => {
+    fastify.route(route);
+});
