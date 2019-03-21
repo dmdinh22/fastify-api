@@ -31,3 +31,29 @@ exports.addCar = async (req, reply) => {
         throw boom.boomify(err);
     }
 };
+
+// update a car
+exports.updateCar = async (req, reply) => {
+    try {
+        const id = req.params.id;
+        const car = req.body;
+        const { ...updateData } = car;
+        const update = await Car.findByIdAndUpdate(id, updateData, {
+            new: true
+        });
+        return update;
+    } catch (err) {
+        throw boom.boomify(err);
+    }
+};
+
+// delete a car
+exports.deleteCar = async (req, reply) => {
+    try {
+        const id = req.params.id;
+        const car = await Car.findByIdAndRemove(id);
+        return car;
+    } catch (err) {
+        throw boom.boomify(err);
+    }
+};
