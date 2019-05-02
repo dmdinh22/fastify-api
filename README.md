@@ -1,2 +1,2 @@
 # Fastify API
-Quick node server
+Quick node server with fastify
